@@ -25,7 +25,7 @@ const typeDefs = `#graphql
     type Query {
         me: User
         users: [User]
-        user(username: String!): User
+        # user(username: String!): User
     }
     input savedBook {
     bookId: String
@@ -43,7 +43,7 @@ const typeDefs = `#graphql
 
         saveBook( savedBook: savedBook!): User
         
-        removeBook(_id:ID!, bookId: String): User
+        removeBook( bookId: String): User
     }
 `;
 

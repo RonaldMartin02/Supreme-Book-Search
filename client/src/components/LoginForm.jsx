@@ -41,9 +41,9 @@ const LoginForm = () => {
       //   throw new Error('something went wrong!');
       // }
 
-      // const { token, user } = await data.loginUser;
-      // console.log(user);
-      Auth.login(data.loginUser);
+      const { token, user } = await data.login;
+      console.log(user);
+      Auth.login(token);
     } catch (err) {
       console.error(err);
       setShowAlert(true);

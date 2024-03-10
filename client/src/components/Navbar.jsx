@@ -11,6 +11,13 @@ const AppNavbar = () => {
   // set modal display state
   const [showModal, setShowModal] = useState(false);
 
+  const Logout = () => {
+    
+    Auth.logout();
+
+  }
+
+
   return (
     <>
       <Navbar bg='dark' variant='dark' expand='lg'>

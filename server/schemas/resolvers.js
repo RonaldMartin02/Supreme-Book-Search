@@ -5,20 +5,20 @@ const { signToken, AuthenticationError } = require('../utils/auth');
 const resolvers = {
     // gets database information
     Query: {
-        me: async (parent, args, context) => {
-            if (context.user) {
-                return User.findOne({ _id: context.user._id }).select('-__v -password');
-            }
-            throw new AuthenticationError('Please log in to do this.');
-        },
+      me: async (parent, args, context) => {
+        if (context.user) {
+          return User.findOne({ _id: context.user._id });
+        }
+        throw AuthenticationError;
+      },
         // shows all users with attached books schema
         users: async () => {
             return User.find();
         },
-        // shows specific user with attached books schema
-        user: async (parent, { username }) => {
-            return User.findOne({ username });
-        },
+        // // shows specific user with attached books schema
+        // user: async (parent, { username }) => {
+        //     return User.findOne({ username });
+        // },
     },
     Mutation: {
         addUser: async (parent, { username, email, password }) => {

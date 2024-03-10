@@ -27,6 +27,7 @@ const SavedBooks = () => {
   const handleDeleteBook = async (bookId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
+    console.log(bookId);
     if (!token) {
       return false;
     }
@@ -36,6 +37,7 @@ const SavedBooks = () => {
         variables: { bookId: bookId },
       });
       // upon success, remove book's id from localStorage
+      
       removeBookId(bookId);
     } catch (err) {
       console.error(err);
@@ -62,11 +64,11 @@ const SavedBooks = () => {
             : 'You have no saved books!'}
         </h2>
         <Row>
-          {userData.savedBooks.map((book) => {
+          {userData.savedBooks.map((book, index) => {
             return (
               <Col md="4">
                 <Card key={book.bookId} border='dark'>
-                  {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
+                  {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} key={index} variant='top' /> : null}
                   <Card.Body>
                     <Card.Title>{book.title}</Card.Title>
                     <p className='small'>Authors: {book.authors}</p>
@@ -84,5 +86,4 @@ const SavedBooks = () => {
     </>
   );
 };
-console.log('SavedBooks.jsx');
 export default SavedBooks;
